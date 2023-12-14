@@ -1,0 +1,119 @@
+﻿
+    @{
+        ViewBag.Title = "User";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <style>
+        /* Form container */
+        .form-container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 25px;
+            margin-bottom: 100px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #333;
+        }
+    
+            .form-container input[type="text"],
+            .form-container input[type="date"],
+            #activity-status {
+                max-width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+
+        /* Form fields */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                font-weight: bold;
+                text-align: left;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Date input field */
+        .date-time-input {
+            position: relative;
+        }
+
+            .date-time-input input[type="date"] {
+                padding-right: 30px;
+            }
+
+            .date-time-input:after {
+                content: "\f073";
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                font-size: 14px;
+                color: #aaa;
+            }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Additional margin for link */
+        .form-container > div {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+
+    <h2>Activity Management</h2>
+    <form action="AddActivityToDatabase" method="POST" class="form-container">
+        <div class="form-group">
+            <label for="actName">Activity Name: </label>
+            <input type="text" class="form-control" id="act" aria-describedby="actHelp" name="name" placeholder="Enter activity">
+        </div><div class="form-group">
+            <label for="actOOTD">OOTD: </label>
+            <input type="text" class="form-control" id="actTd" aria-describedby="ootdHelp" placeholder="Enter Style" name="ootd">
+        </div>
+        <div class="form-group">
+            <label for="actLoc">Address: </label>
+            <input type="text" class="form-control" id="actLoc" aria-describedby="addHelp" placeholder="Enter Location" name="address">
+        </div>
+        <div class="date-time-input form-group">
+            <label for="activity-date">Date:</label>
+            <input type="date" class="form-control" id="activity-date" name="date" required>
+        </div>
+        <div class="form-group">
+            <label for="activity-status">Status:</label>
+            <select class="form-control" id="activity-status" name="status">
+                <option value="In progress">In progress</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div style="margin-top: 20px;">
+        <a href="@Url.Action("ShowActivity", "Activity")" style="text-decoration: none;">List of Activity</a>
+    </div>

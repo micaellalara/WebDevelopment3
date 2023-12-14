@@ -1,0 +1,104 @@
+﻿@model crudFinal.activity
+@{
+    ViewBag.Title = "EditAct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+<style>
+    .edit-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .input-value {
+        margin-bottom: 20px;
+    }
+
+    .label {
+        margin-bottom: 10px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        text-align: left;
+        margin-top: 5px;
+        font-size: 15px;
+        color: black;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-top: 5px;
+        color: black;
+        max-width: 100%;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #337ab7;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    .form-control {
+        max-width: 100%;
+    }
+</style>
+<div class="edit-container">
+    <div class="input-value">
+        <h2>Edit Activity</h2>
+
+        @using (Html.BeginForm("Update", "Activity", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.activity_id)
+
+            <div class="label">
+                <label>Activity Name:</label>
+                @Html.TextBoxFor(model => model.name)
+            </div>
+
+            <div class="label">
+                <label>OOTD:</label>
+                @Html.TextBoxFor(model => model.ootd)
+            </div>
+
+            <div class="label">
+                <label>Date:</label>
+                @Html.TextBoxFor(model => model.date, new { @class = "datepicker" })
+            </div>
+
+            <div class="label">
+                <label>Location:</label>
+                @Html.TextBoxFor(model => model.address)
+            </div>
+
+            <div class="label">
+                <label>Status:</label>
+                @Html.DropDownListFor(model => model.status, new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "In Progress", Value = "In Progress" },
+                    new SelectListItem { Text = "Finished", Value = "Finished" },
+                    new SelectListItem { Text = "Canceled", Value = "Canceled" }
+                }, new { @class = "form-control" })
+            </div>
+
+            <input class="btn" type="submit" value="Save Changes" />
+        }
+
+
+    </div>
+</div>
+<div style="margin-top: 20px;">
+<a href="@Url.Action("ShowActivity", "Activity")" style=" text-decoration: none;">Go back to Activity List</a>
+</div>
+
